@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regalo Recibido</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2 id="senderName"></h2>
+        <button id="revealButton">Revelar Mensaje</button>
+        <div id="message" class="hidden"></div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const senderName = urlParams.get('name');
+        const message = urlParams.get('message');
+
+        if (senderName) {
+            document.getElementById('senderName').innerText = `${senderName} te ha enviado un regalo`;
+        }
+
+        document.getElementById('revealButton').addEventListener('click', function() {
+            if (message) {
+                const messageElement = document.getElementById('message');
+                messageElement.innerText = message;
+                messageElement.classList.remove('hidden');
+                this.style.display = 'none'; // Ocultar el botón después de revelar el mensaje
+            }
+        });
+    </script>
+</body>
+</html>

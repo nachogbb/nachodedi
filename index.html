@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Regalo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Envía un Regalo Personalizado</h1>
+        <form id="giftForm">
+            <input type="text" id="userName" placeholder="Tu nombre" required>
+            <textarea id="userMessage" placeholder="Tu mensaje" required></textarea>
+            <button type="submit">Generar Enlace</button>
+        </form>
+        <div id="result" class="hidden">
+            <p id="whatsAppLink"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('giftForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const userName = document.getElementById('userName').value;
+            const userMessage = document.getElementById('userMessage').value;
+            const encodedMessage = encodeURIComponent(userMessage);
+            const linkToSend = `https://https://github.com/nachogbb/nachodedi.git/regalo.html?name=${encodeURIComponent(userName)}&message=${encodedMessage}`; // URL absoluta
+
+            document.getElementById('whatsAppLink').innerHTML = `Comparte este enlace: <a href="https://wa.me/?text=${encodeURIComponent(linkToSend)}" target="_blank">Enviar por WhatsApp</a>`;
+            document.getElementById('result').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
